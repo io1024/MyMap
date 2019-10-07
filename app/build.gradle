@@ -19,9 +19,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    //java.lang.UnsatisfiedLinkError: No implementation found for int com.baidu.mapsdkplatform.comjni.tools.JNITools.initClass
+    //jniLibs 目录下存放一个 jar 包，验证上述问题的两种解决方法（方案一：添加 sourceSets。方案二：jniLibs）
+    sourceSets {
+        main {
+            jniLibs.srcDir 'libs'
+        }
+    }
+
 }
 
 dependencies {
+    //libs 目录下的引用
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
     //旧版本
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:appcompat-v7:28.0.0'

@@ -61,16 +61,28 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeNoBar"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <!-- 百度地图定位 -->
+        <!-- android:process=":remote"：单独开一个进程 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
 
-        <activity android:name=".MainActivity">
+        <!-- 可参考：百度地图开放平台-Android地图SDK-开发指南-显示地图 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="jUugiZyxXL04lFkrgd0VjfaFvvKuWoe4" />
+
+        <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -78,6 +90,9 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop" />
 
     </application>
 
